@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 =======
 pragma solidity ^0.5.0;
 
@@ -88,8 +86,3 @@ pragma solidity ^0.5.0;
         _mint(msg.sender, reward);
         
     }
-    
-    
-       
-    
->>>>>>> origin/master
