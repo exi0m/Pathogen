@@ -45,7 +45,7 @@ contract StakingToken is ERC20, Ownable
 
     // adds a stakeholder. Aman has used '_pathogen' in place of '_stakeholder' from the template. So, '_pathogen' will be used for consistency.
     // '_pathogen' is the address of stakeholder to be added
-    function add_stakeolder (address _pathogen) public
+    function add_stakeholder (address _pathogen) public
     {
         // The new address '_pathogen' is passed to 'is_stakeholder' function, which performs the same steps as above
         // The boolean variable '_new_stakeholder' is defined to check if the '_pathogen' address belongs to the 'pathogen' array
