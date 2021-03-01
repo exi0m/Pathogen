@@ -12,9 +12,9 @@ contract StakingToken is ERC20, Ownable
    using SafeMath for uint256;
 
    /**
-    * @notice The constructor for the Staking Token.
-    * @param _owner The address to receive all tokens on construction.
-    * @param _supply The amount of tokens to mint on construction.
+    * The constructor for the Staking Token.
+    * _owner The address to receive all tokens on construction.
+    * _supply The amount of tokens to mint on construction.
     */
    constructor(address _owner, uint256 _supply) public
    {
