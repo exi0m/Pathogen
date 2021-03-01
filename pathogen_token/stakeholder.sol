@@ -4,9 +4,8 @@ import "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
 import "openzeppelin-solidity/contracts/math/SafeMath.sol";
 import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 
-/**
-* @title Pathogen Token (PATH)
-* @notice Implements a basic ERC20 staking token with incentive distribution.
+/* Pathogen Token (PATH)
+Implements a basic ERC20 staking token with incentive distribution.
 */
 contract StakingToken is ERC20, Ownable 
 {
@@ -29,9 +28,9 @@ contract StakingToken is ERC20, Ownable
     /* Checks if the "_stakeholder_address" is a valid stakeholder address */
     function is_stakeholder (address _stakeholder_address) public view returns (uint bool, uint256)
     {
-        /* p is the address' position in the 'pathogen' array.  
-        if the position number of p is less than the array's length,
-        increment the count of p */
+        /* position_number is the address' position in the 'pathogen' array.  
+        if the position number is less than the array's length,
+        increment the count of position_number */
         for (uint256 position_number=0; position_number< pathogen.length; position_number += 1)
         {   
             /* if the '_stakeholder_address' address is a valid stakeholder, 
