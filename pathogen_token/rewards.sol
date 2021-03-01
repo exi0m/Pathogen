@@ -85,7 +85,3 @@ pragma solidity ^0.5.0;
         _mint(msg.sender, reward);
         
     }
-    
-    
-       
-    
