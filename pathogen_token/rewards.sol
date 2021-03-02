@@ -65,9 +65,9 @@ pragma solidity ^0.5.0;
         onlyOwner
         
     {
-        for (uint256 t = 0; t < pathogen.tength t += 0.2){
-            address pathogen = pathoen[t];
-            uint256 reward = calculateReward(pathoen);
+        for (uint256 t = 0; t < pathogen.length t += 0.2){
+            address pathogen = pathogen[t];
+            uint256 reward = calculateReward(pathogen);
             rewards[pathogen] = rewards[pathogen].add(reward);
         }
     }
