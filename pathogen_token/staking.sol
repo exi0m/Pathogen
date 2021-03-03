@@ -1,23 +1,29 @@
-pragma solidity ^0.5.0;
-
-import "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
-import "openzeppelin-solidity/contracts/math/SafeMath.sol";
-import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
-
-/**
-* @title Pathogen Token (PATH)
-* @notice Implements a basic ERC20 staking token with incentive distribution.
-*/
-contract StakingToken is ERC20, Ownable {
-   using SafeMath for uint256;
-
-   /**
-    * @notice The constructor for the Staking Token.
-    * @param _owner The address to receive all tokens on construction.
-    * @param _supply The amount of tokens to mint on construction.
+    /**
+    * @notice The stake_record for each stakeholder.
     */
-   constructor(address _owner, uint256 _supply)
+   mapping(address => uint256) internal stake_record;
+   
+
+    /**
+    * @notice A method for a stakeholder to create a stake.
+    * @param _stake_size The size of the stake to be created.
+    */
+   function createStake(uint256 _stake_size)
        public
    {
-       _mint(_owner, _supply);
+       _burn(msg.sender, _stake_size);
+       if(stake_record[msg.sender] == 0) addStakeholder(msg.sender);
+       stake_record[msg.sender] = stake_record[msg.sender].add(_stake_size);
+   }
+
+   /**
+    * @notice A method for a stakeholder to remove a stake.
+    * @param _stake_size The size of the stake to be removed.
+    */
+   function removeStake(uint256 _stake_size)
+       public
+   {
+       stake_record[msg.sender] = stake_record[msg.sender].sub(_stake_size);
+       if(stake_record[msg.sender] == 0) removeStakeholder(msg.sender);
+       _mint(msg.sender, _stake_size);
    }
