@@ -59,22 +59,19 @@ pragma solidity ^0.5.0;
         {
             /* for all the addresses in the pathogen array, distribute a 0.2 percent reward */
             address rewarding_address = pathogen[path_reward];
-            uint256 give_reward = calculate_reward(rewarding_address);
+            uint256 given_reward = calculate_reward(rewarding_address);
 
             /* all the addresses that receive the reward are added
             to the 'rewards' mapping object */
-            rewards[rewarding_address] = rewards[rewarding_address].add(give_reward);
+            rewards[rewarding_address] = rewards[rewarding_address].add(given_reward);
         }
     }
     
-    /* function to withdraw stakeholder's rewards.
-    */
-    
+    /* function to withdraw stakeholder's rewards */  
     function withdraw_reward()
         public       
     {
         uint256 rewarding_address = rewards[msg.sender];
         rewards[msg.sender] = 0;
-        _mint(msg.sender, rewarding_address);
-        
+        _mint(msg.sender, rewarding_address);      
     }
