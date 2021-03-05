@@ -3,19 +3,15 @@ pragma solidity ^0.5.0;
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/token/ERC20/ERC20.sol";
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/math/SafeMath.sol";
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/token/ERC20/ERC20Detailed.sol";
-import "../src/antigen_token/token.sol";
-import "../src/freshtoken_token/token.sol";
-import "../src/nitrotoken_token/token.sol";
-import "../src/soma_token/token.sol";
-import "../src/viraltoken_token/token.sol";
 
 
-/* Pathogen Token (PATH)
-*  Implements a basic ERC20 staking token with incentive distribution.
+/* Viral Token, basic token equipped with a liquidity pool that allows staking
+*  to incentivize token holders to add to the liquidity pool for a reward.
 */
 
-contract PathogenToken is ERC20, ERC20Detailed{
+contract ViralToken is ERC20, ERC20Detailed{
     using SafeMath for uint256;
+
 
     address payable owner;
     uint public initial_supply;
@@ -28,13 +24,13 @@ contract PathogenToken is ERC20, ERC20Detailed{
     }
     
     /*
-    * @notice The constructor for the Pathogen Token.
+    * @notice The constructor for the Viral Token.
     * @param owner The address to receive all tokens on construction.
     * @param initial_supply The amount of tokens to mint on construction.
     * @param pathogen_trust The amount of tokens the Pathogen Trust is staking per liquidity pool
     */
 
-    constructor() ERC20Detailed("Pathogen", "PATH", 18) public{
+    constructor() ERC20Detailed("ViralToken", "VIRAL", 18) public{
         owner  = msg.sender;
         initial_supply = 10000000; //10,000,000 supply
         pathogen_trust = 1000000; //$1,000,000 stake per pool by the Pathogen Trust
@@ -45,30 +41,10 @@ contract PathogenToken is ERC20, ERC20Detailed{
     function mint(address recipient, uint amount) public onlyOwner {
         _mint(recipient, amount);
     }
-
-    /**
-    * @notice instantiating new instances of each token in the parent contract
-    */
-    AntigenToken _antigen = new AntigenToken();
-    FreshToken _fresh = new FreshToken();
-    NitroToken _nitro = new NitroToken();
-    SomaToken _soma = new SomaToken();
-    ViralToken _viral = new ViralToken();
     
     
-    /**
-    * @notice Placing Pathogen Trust's total stake per pool in an array for iteration
-    */
-    uint[] tokenPool = [_antigen.pathogen_trust(),
-                        _fresh.pathogen_trust(),
-                        _nitro.pathogen_trust(), 
-                        _soma.pathogen_trust(),
-                        _viral.pathogen_trust()
-                        ];
     
-
-    
-    address[] internal pathogen_stakeholders;    
+    address[] internal viral_stakeholders;    
     
     
     /**
@@ -83,36 +59,36 @@ contract PathogenToken is ERC20, ERC20Detailed{
        view
        returns(bool, uint256)
     {
-       for (uint256 position = 0; position < pathogen_stakeholders.length; position += 1){
-           if (_address == pathogen_stakeholders[position]) return (true, position);
+       for (uint256 position = 0; position < viral_stakeholders.length; position += 1){
+           if (_address == viral_stakeholders[position]) return (true, position);
        }
        return (false, 0);
     }
 
     /**
     * @notice A method to add a stakeholder.
-    * @param _pathogens The stakeholder to add.
+    * @param _viral The stakeholder to add.
     */
     
-    function addStakeholder(address _pathogens)
+    function addStakeholder(address _viral)
        public
     {
-       (bool _isStakeholder, ) = isStakeholder(_pathogens);
-       if(!_isStakeholder) pathogen_stakeholders.push(_pathogens);
+       (bool _isStakeholder, ) = isStakeholder(_viral);
+       if(!_isStakeholder) viral_stakeholders.push(_viral);
     }
 
     /**
     * @notice A method to remove a stakeholder.
-    * @param _pathogens The stakeholder to remove.
+    * @param _viral The stakeholder to remove.
     */
     
-    function removeStakeholder(address _pathogens)
+    function removeStakeholder(address _viral)
        public
     {
-       (bool _isStakeholder, uint256 position) = isStakeholder(_pathogens);
+       (bool _isStakeholder, uint256 position) = isStakeholder(_viral);
        if(_isStakeholder){
-           pathogen_stakeholders[position] = pathogen_stakeholders[pathogen_stakeholders.length - 1];
-           pathogen_stakeholders.pop();
+           viral_stakeholders[position] = viral_stakeholders[viral_stakeholders.length - 1];
+           viral_stakeholders.pop();
        }
     }
    
@@ -124,16 +100,16 @@ contract PathogenToken is ERC20, ERC20Detailed{
    
     /**
     * @notice A method to retrieve the stake for a stakeholder.
-    * @param _pathogens The stakeholder to retrieve the stake for.
+    * @param _viral The stakeholder to retrieve the stake for.
     * @return uint256 The amount of wei staked.
     */
     
-    function amountStaked(address _pathogens)
+    function amountStaked(address _viral)
        public
        view
        returns(uint256)
     {
-       return stake_record[_pathogens];
+       return stake_record[_viral];
     }
 
     /**
@@ -147,25 +123,13 @@ contract PathogenToken is ERC20, ERC20Detailed{
        returns(uint256)
     {
        uint256 _aggregated_stakes = 0;
-       for (uint256 position = 0; position < pathogen_stakeholders.length; position += 1){
-           _aggregated_stakes = _aggregated_stakes.add(stake_record[pathogen_stakeholders[position]]);
+       for (uint256 position = 0; position < viral_stakeholders.length; position += 1){
+           _aggregated_stakes = _aggregated_stakes.add(stake_record[viral_stakeholders[position]]);
        }
        return _aggregated_stakes;
     }
     
-    /**
-    * @notice A method that aggregates the totality of all Pathogen Trust's liquidity pool stakes
-    * @return uint256 The aggregated stakes from the Pathogen Trust stakeholder.
-    */
-    
-    function pathogen_trust_counter() public view returns(uint pathogen_trust_total){ 
-        uint pathogen_staked_total = 0;
-        for(uint position = 0; position < tokenPool.length; position += 1){
-        pathogen_staked_total += tokenPool[position];
-        }
-        return pathogen_staked_total;
-    }
-   
+
     /**
     * @notice A method for a stakeholder to create a stake.
     * @param _stake_size The size of the stake to be created.
@@ -200,15 +164,15 @@ contract PathogenToken is ERC20, ERC20Detailed{
   
     /**
     * @notice A method to allow a stakeholder to check his rewards.
-    * @param _pathogens The stakeholder to check rewards for.
+    * @param _viral The stakeholder to check rewards for.
     */
     
-    function rewardOf(address _pathogens)
+    function rewardOf(address _viral)
        public
        view
        returns(uint256)
     {
-       return rewards[_pathogens];
+       return rewards[_viral];
     }
 
     /**
@@ -222,8 +186,8 @@ contract PathogenToken is ERC20, ERC20Detailed{
        returns(uint256)
     {  
        uint256 _totalRewards = 0;
-       for (uint256 path_reward = 0; path_reward < pathogen_stakeholders.length; path_reward += 1){
-           _totalRewards = _totalRewards.add(rewards[pathogen_stakeholders[path_reward]]);
+       for (uint256 viral_reward = 0; viral_reward < viral_stakeholders.length; viral_reward += 1){
+           _totalRewards = _totalRewards.add(rewards[viral_stakeholders[viral_reward]]);
        }
        return _totalRewards;
     }
@@ -231,15 +195,15 @@ contract PathogenToken is ERC20, ERC20Detailed{
    
     /**
     * @notice A simple method that calculates the rewards for each stakeholder.
-    * @param _pathogens The stakeholder to calculate rewards for.
+    * @param _viral The stakeholder to calculate rewards for.
     */
     
-    function calculateReward(address _pathogens)
+    function calculateReward(address _viral)
        public
        view
        returns(uint256)
     {   
-       return ((pathogen_trust_counter() / 100)  / (pathogen_trust/stake_record[_pathogens]));
+       return pathogen_trust/stake_record[_viral];
     }
    
    
@@ -251,8 +215,8 @@ contract PathogenToken is ERC20, ERC20Detailed{
        public
        onlyOwner
     {
-       for (uint256 path_reward = 0; path_reward < pathogen_stakeholders.length; path_reward += 1){
-           address stakeholder_address = pathogen_stakeholders[path_reward];
+       for (uint256 viral_reward = 0; viral_reward < viral_stakeholders.length; viral_reward += 1){
+           address stakeholder_address = viral_stakeholders[viral_reward];
            uint256 reward = calculateReward(stakeholder_address);
            rewards[stakeholder_address] = rewards[stakeholder_address].add(reward);
        }
@@ -270,5 +234,4 @@ contract PathogenToken is ERC20, ERC20Detailed{
        _mint(msg.sender, reward);
     }
    
-
 }
