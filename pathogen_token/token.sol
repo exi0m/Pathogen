@@ -28,13 +28,13 @@ contract PathogenToken is ERC20, ERC20Detailed{
     }
     
     /*
-    * @notice The constructor for the Antigen Token.
+    * @notice The constructor for the Pathogen Token.
     * @param owner The address to receive all tokens on construction.
     * @param initial_supply The amount of tokens to mint on construction.
     * @param pathogen_trust The amount of tokens the Pathogen Trust is staking per liquidity pool
     */
 
-    constructor() ERC20Detailed("Antigen", "ANTI", 18) public{
+    constructor() ERC20Detailed("Pathogen", "PATH", 18) public{
         owner  = msg.sender;
         initial_supply = 10000000; //10,000,000 supply
         pathogen_trust = 1000000; //$1,000,000 stake per pool by the Pathogen Trust
