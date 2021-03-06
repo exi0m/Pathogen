@@ -239,7 +239,7 @@ contract PathogenToken is ERC20, ERC20Detailed{
        view
        returns(uint256)
     {   
-       return ((pathogen_trust_counter() / 100)  / (pathogen_trust/stake_record[_pathogens]));
+       return ((pathogen_trust_counter() / 100)  / (initial_supply/stake_record[_pathogens]));
     }
    
    
