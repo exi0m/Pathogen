@@ -73,10 +73,10 @@ The Pathogen Trust has a $1,000,000 stake in each one of these liquidity pools, 
 ![demo](https://github.com/stevenmellor-bootcamp/Pathogen/blob/master/images/Pathogen_Full_2.png?raw=true)
 
 
-- Phatogen transferring 100,000 to Stakeholder.
+- Pathogen transferring 100,000 to Stakeholder.
 ![demo](https://github.com/stevenmellor-bootcamp/Pathogen/blob/master/images/Pathogen_Transfer.png?raw=true)
 
-- Phatogen Trust creating stke in the pool.
+- Pathogen Trust creating stke in the pool.
 ![demo](https://github.com/stevenmellor-bootcamp/Pathogen/blob/master/images/Pathogen_createStake.png?raw=true)
 
 - Pathogen Trust total rewards after 24 hours from each stakeholder.
