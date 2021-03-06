@@ -42,7 +42,7 @@ The Pathogen Trust has a $1,000,000 stake in each one of these liquidity pools, 
 
 - Since Pathogen does not represent the associated tokens' liquidity pools, based on how many tokens the user owns, is the exposure to the Pathogen Trust's stake in each pool. This will help on saving gas so no conversion between coins needs to take place(PATH <-> ANTI). </p>
  
-- Consider this. A user owns 100 tokens, totaling $100 worth of PATH tokens. This means that $100 represents of one pool at 0.01% of a single pool(100/1000000), * 5(all the pools) represents 0.002% of the total staked. </p>
+- Consider this. A user owns 100 tokens, totaling $100 worth of PATH tokens. This means that $100 represents of one pool at 0.01% of a single pool(100/1000000), * 5(all the pools) represents 0.0001% of the total staked. </p>
 
 ## Earning Rewards
 - After a 24 hour period, those rewards remain within the liquidity pool but will also reward the user with additional PATH tokens as a form of elasticity, delegated based on amount of tokens owned. </p>
@@ -56,8 +56,8 @@ The Pathogen Trust has a $1,000,000 stake in each one of these liquidity pools, 
 (Make sure environment is setup. Ganache/Truffle, Metamask, Remix, etc)</p>
 1) Deploy Contract(O)
 2) Transfer(0)(Stakeholders(s) address(es), token amount to transfer to stakeholder(s))
-3) AddStakeholder(O)(Accepts and adds stakeholder to contract)
-4) CreateStake(U)(Amount of tokens to stake by stakeholder)
+3) addStakeholder(O)(Accepts and adds stakeholder to contract)
+4) createStake(U)(Amount of tokens to stake by stakeholder)
 5) totalStakes(O/U)(Checks how many coins are staked to contract)
 6) calculateReward(O)(Generates rewards to distribute)
 7) totalRewards(Calculates aggregated rewards)
