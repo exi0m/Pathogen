@@ -47,9 +47,9 @@ The Pathogen Trust has a $1,000,000 stake in each one of these liquidity pools, 
 ## Earning Rewards
 - After a 24 hour period, those rewards remain within the liquidity pool but will also reward the user with additional PATH tokens as a form of elasticity, delegated based on amount of tokens owned. </p>
 
-- Example: User owns 100 tokens. All 5 pools had 100 transactions. 100 transactions = 2% total of one liquidty pool. 100 transactions * 5 pools = 500 transactions total in one day. 2%(one pool's 100 transactions rewards for one day) * 5 pools = 10% accumulative total reward for one day. 
+- Example: User owns 100 tokens. All 5 pools had 100 transactions. 100 transactions = 1% total of one liquidty pool. 100 transactions * 5 pools = 500 transactions total in one day. 1%(one pool's 100 transactions rewards for one day) * 5 pools = 10% accumulative total reward for one day. 
 
--  Each 2% will remain in the liquidity pools, but will represent as a reward to the token holder. 10% * the amount of current value of the user's ownership of the entire token supply(0.01%) = 0.01 tokens as a reward for being a token holder. The token holder after 24 hours will now have 100.01 tokens.
+-  Each 1% will remain in the liquidity pools, but will represent as a reward to the token holder. 10% * the amount of current value of the user's ownership of the entire token supply(0.01%) = 0.01 tokens as a reward for being a token holder. The token holder after 24 hours will now have 100.01 tokens.
 
 ## Metrics defined/ calculated
 **Legend: Execute functions as O: Owner/Contract Deployer; U: User/Non-Owner/Stakeholders**</p>
