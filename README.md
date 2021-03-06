@@ -3,10 +3,12 @@
 <img src="https://www.creative-biolabs.com/vaccine/images/Pathogen-Target-Based-Vaccine-Design-Fig.2.jpg" alt="drawing" width="650" height="400"/>
 
 ## Technology Stack
-- Language: Solidity
-- IDE: Remix
-- Testnet: MetaMask
-- Developer environment: Ganache
+- Language: Solidity 
+- Library: Open Zeppelin
+- Testnet: Metamask
+- Integrated Development Environment: Remix
+- Blockchain Development Environment: Ganache
+- Other tools: Github
 
 ## What is Pathogen?
 
