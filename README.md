@@ -68,6 +68,23 @@ The Pathogen Trust has a $1,000,000 stake in each one of these liquidity pools, 
 10) removeStake(U)(Amount of tokens you want to remove)
 11) balanceOf(O/U)(Check balance of wallet)
 
+![demo](https://github.com/stevenmellor-bootcamp/Pathogen/blob/master/images/Pathogen_Full_1.png?raw=true)
+
+![demo](https://github.com/stevenmellor-bootcamp/Pathogen/blob/master/images/Pathogen_Full_2.png?raw=true)
+
+
+- Phatogen transferring 100,000 to Stakeholder.
+![demo](https://github.com/stevenmellor-bootcamp/Pathogen/blob/master/images/Pathogen_Transfer.png?raw=true)
+
+- Phatogen Trust creating stke in the pool.
+![demo](https://github.com/stevenmellor-bootcamp/Pathogen/blob/master/images/Pathogen_createStake.png?raw=true)
+
+- Pathogen Trust total rewards after 24 hours from each stakeholder.
+![demo](https://github.com/stevenmellor-bootcamp/Pathogen/blob/master/images/Pathogen_totalRewards.png?raw=true)
+
+- Pathogen Trust Balance after rewards.
+![demo](https://github.com/stevenmellor-bootcamp/Pathogen/blob/master/images/Pathogen_Balance_After_Rewards.png?raw=true)
+
 
 ## Conclusion
 - The sentiment behind this token was to give the token holder the ability to part take in liquidity pool staking and reap the rewards without the numerous gas taxes that come along with the process. 
